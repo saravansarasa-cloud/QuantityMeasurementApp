@@ -1,0 +1,55 @@
+import org.junit.jupiter.api.Test;
+
+class QuantityMeasurementAppTest {
+
+    // 🔹 Same value tests
+    @Test
+    void testEquality_SameValue() {
+        Quantity q1 = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+        Quantity q2 = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+
+        assertTrue(q1.equals(q2));
+    }
+
+    // 🔹 Different value tests
+    @Test
+    void testEquality_DifferentValue() {
+        Quantity q1 = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+        Quantity q2 = new Quantity(2.0, QuantityMeasurementApp.LengthUnit.FEET);
+
+        assertFalse(q1.equals(q2));
+    }
+
+    // 🔹 Cross-unit equality
+    @Test
+    void testEquality_FeetToInch() {
+        Quantity q1 = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+        Quantity q2 = new Quantity(12.0, QuantityMeasurementApp.LengthUnit.INCH);
+
+        assertTrue(q1.equals(q2));
+    }
+
+    @Test
+    void testEquality_InchToFeet() {
+        Quantity q1 = new Quantity(12.0, QuantityMeasurementApp.LengthUnit.INCH);
+        Quantity q2 = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+
+        assertTrue(q1.equals(q2));
+    }
+
+    // 🔹 Null test
+    @Test
+    void testEquality_NullComparison() {
+        Quantity q = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+
+        assertFalse(q.equals(null));
+    }
+
+    // 🔹 Same reference test
+    @Test
+    void testEquality_SameReference() {
+        Quantity q = new Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+
+        assertTrue(q.equals(q));
+    }
+}
